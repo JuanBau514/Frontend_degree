@@ -89,7 +89,7 @@ export default function Usuarios() {
   };
 
   const eliminarUltimoRegistro = () => {
-    fetch('http://localhost:3000/api/eliminar-ultimo-estudiante', { method: 'DELETE' })
+    fetch('https://backenddegree-production.up.railway.app/api/eliminar-ultimo-estudiante', { method: 'DELETE' })
   .then(response => response.json())
   .then(data => {
     if (data.message === 'Último registro eliminado') {

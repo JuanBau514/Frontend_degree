@@ -25,7 +25,7 @@ function createWindow() {
         mainWindow.webContents.openDevTools();
     }
 
-    mainWindow.loadURL("http://localhost:3000");
+    mainWindow.loadURL("https://backenddegree-production.up.railway.app");
 
     mainWindow.once('ready-to-show', () => {
         mainWindow.show();
