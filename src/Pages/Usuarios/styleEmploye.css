@@ -1,0 +1,137 @@
+/* Section Empleados */
+.empleados {
+    background: #fcf2e8;
+    margin-left: 4.4rem;
+}
+
+.tituloEmpleados {
+    padding-top: 1rem;
+    font-weight: 600;
+}
+
+.tituloEmpleados span {
+    color: #8B0000;
+    font-size: 5.5rem;
+    margin-left: 8rem;
+}
+
+.tituloEmpleados h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-left: 8rem;
+}
+
+.botones {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.boton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 2rem;
+    border-radius: 0.5rem;
+    background-color: #474fa0;
+    color: #ffffff;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
+
+.boton:hover {
+    background-color: #8B0000;
+    color: #ffffff;
+}
+
+.contenedorEmpleados {
+    background-color: #fcf2e8;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, auto));
+    gap: 2rem;
+    padding: 4rem;
+}
+
+.imgEmpleado {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto;
+    margin-bottom: 1rem;
+}
+
+.imgEmpleado img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+    border: 2px solid var(--main-color);
+}
+
+.contenedorEmpleados .cajaEmpleado {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    box-shadow: 1px 4px 41px rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
+}
+
+.contenedorEmpleados .cajaEmpleado h3 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin: 0.5rem 0 0.5rem;
+    color: var(--text-color);
+}
+
+.contenedorEmpleados .cajaEmpleado h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0.5rem 0 0.5rem;
+    color: var(--text-color);
+}
+
+
+.contenedorEmpleados .cajaEmpleado p {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+
+}
+
+.botonCard {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000000;
+}
+
+.btnc {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.2rem 2rem;
+    border-radius: 0.5rem;
+    background-color: #8B0000;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 100;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    margin-top: 1rem;
+    margin-left: 1rem;
+}
+
+.btnc:hover {
+    background-color: #474fa0;
+    color: #ffffff;
+}
