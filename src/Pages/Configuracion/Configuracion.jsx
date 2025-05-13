@@ -9,11 +9,39 @@ export default function Configuracion() {
     "Plan Futuro"
   ];
 
+  const planToVarStatus = {
+    "Tecnología en Sistematización de Datos": "0",
+    "Ingeniería en Telemática": "1",
+    "Plan Futuro": "2", // O el valor que quieras manejar en el futuro
+  };
+
   const [selectedPlan, setSelectedPlan] = useState(planes[0]);
 
   // Función para manejar el cambio de plan
-  const handleSelectChange = (event) => {
-    setSelectedPlan(event.target.value);
+  const handleSelectChange = async (event) => {
+    const newPlan = event.target.value;
+    setSelectedPlan(newPlan);
+
+    const VARSTATUS = planToVarStatus[newPlan];
+
+    try {
+      const response = await fetch('/api/set-varstatus', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ VARSTATUS })
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        console.log('VARSTATUS actualizado:', data.message);
+      } else {
+        console.error('Error al actualizar VARSTATUS:', data.error);
+      }
+    } catch (error) {
+      console.error('Error en la solicitud:', error);
+    }
   };
 
   return (
