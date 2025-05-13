@@ -17,7 +17,7 @@ export default function Homologacion() {
       const formData = new FormData();
       formData.append("archivo", archivoSeleccionado);
 
-      const response = await axios.post("https://backenddegree-production.up.railway.app/api/upload", formData, {
+      const response = await axios.post("http://localhost:3000/api/upload", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

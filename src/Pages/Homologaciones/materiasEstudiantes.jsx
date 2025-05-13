@@ -56,7 +56,7 @@ export default function MateriasEstudiante() {
     async function fetchDatos() {
       try {
         const response = await fetch(
-          "https://backenddegree-production.up.railway.app/api/datos-estudiante"
+          "http://localhost:3000/api/datos-estudiante"
         );
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);

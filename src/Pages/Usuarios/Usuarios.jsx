@@ -9,25 +9,7 @@ export default function Usuarios() {
   const [estudiantes, setEstudiantes] = useState([]);
 
   useEffect(() => {
-    fetch('/src/scripts/estudiantes.csv')
-      .then(response => response.text())
-      .then(csvText => {
-        Papa.parse(csvText, {
-          header: false,
-          complete: (results) => {
-            const estudiantesFormateados = results.data.map(row => ({
-              nombre: row[0],
-              documento: row[1],
-              codigo: row[2],
-              email: row[3],
-              semestre: row[4],
-              proyectoCurricular: row[5],
-              creditos: row[6]
-            }));
-            setEstudiantes(estudiantesFormateados);
-          }
-        });
-      });
+    cargarEstudiantes();
   }, []);
 
     const descargarReporte = async () => {
@@ -66,43 +48,33 @@ export default function Usuarios() {
     }
   };
 
-  const cargarEstudiantes = () => {
-    fetch('/src/scripts/estudiantes.csv')
-      .then(response => response.text())
-      .then(csvText => {
-        Papa.parse(csvText, {
-          header: false,
-          complete: (results) => {
-            const estudiantesFormateados = results.data.map(row => ({
-              nombre: row[0],
-              documento: row[1],
-              codigo: row[2],
-              email: row[3],
-              semestre: row[4],
-              proyectoCurricular: row[5],
-              creditos: row[6]
-            }));
-            setEstudiantes(estudiantesFormateados);
-          }
-        });
-      });
+  const cargarEstudiantes = async () => {
+    try {
+      const response = await fetch('http://localhost:3000/api/estudiantes');
+      if (!response.ok) throw new Error('Error al obtener estudiantes');
+      const estudiantes = await response.json();
+      setEstudiantes(estudiantes);
+    } catch (error) {
+      console.error('Error al cargar estudiantes:', error);
+    }
   };
 
   const eliminarUltimoRegistro = () => {
-    fetch('https://backenddegree-production.up.railway.app/api/eliminar-ultimo-estudiante', { method: 'DELETE' })
-  .then(response => response.json())
-  .then(data => {
-    if (data.message === 'Último registro eliminado') {
-      alert('Registro eliminado con éxito');
-      cargarEstudiantes(); // Recargar la lista de estudiantes
-    } else {
-      alert(data.message);
-    }
-  })
-  .catch(error => {
-    console.error('Error al eliminar el registro:', error);
-  });
+    fetch('http://localhost:3000/api/eliminar-ultimo-estudiante', { method: 'DELETE' })
+        .then(response => response.json())
+        .then(data => {
+          if (data.message === 'Último registro eliminado') {
+            alert('Registro eliminado con éxito');
+            cargarEstudiantes(); // Recargar la lista de estudiantes
+          } else {
+            alert(data.message);
+          }
+        })
+        .catch(error => {
+          console.error('Error al eliminar el registro:', error);
+        });
   };
+
 
   return (
     <div>
@@ -140,7 +112,7 @@ export default function Usuarios() {
               <p>Documento: {estudiante.documento}</p>
               <p>Email: {estudiante.email}</p>
               <p>Semestre: {estudiante.semestre}</p>
-              <p>Proyecto curricular: {estudiante.proyectoCurricular}</p>
+              <p>Proyecto curricular: {estudiante.proyecto_curricular}</p>
               <p>Créditos: {estudiante.creditos}</p>
               <div className="botonCard">
                    <button className="boton" onClick={eliminarUltimoRegistro}>Eliminar Último Registro</button>

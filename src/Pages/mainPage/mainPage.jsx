@@ -42,7 +42,7 @@ export default function Mainpage() {
             alt="Hero"
             className="mx-auto aspect-video overflow-hidden rounded-xl object-bottom sm:w-full lg:order-last lg:aspect-square"
             height="550"
-            src="/src/assets/react.svg"
+            src="/Escudo_UD.png"
             width="500"
           />
         </div>
