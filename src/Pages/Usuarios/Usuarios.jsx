@@ -59,20 +59,26 @@ export default function Usuarios() {
     }
   };
 
-  const eliminarUltimoRegistro = () => {
-    fetch('http://localhost:3000/api/eliminar-ultimo-estudiante', { method: 'DELETE' })
-        .then(response => response.json())
-        .then(data => {
-          if (data.message === 'Último registro eliminado') {
-            alert('Registro eliminado con éxito');
-            cargarEstudiantes(); // Recargar la lista de estudiantes
-          } else {
-            alert(data.message);
-          }
-        })
-        .catch(error => {
-          console.error('Error al eliminar el registro:', error);
-        });
+  const eliminarRegistro = async (id) => {
+    if (!window.confirm('¿Estás seguro de eliminar este registro?')) return;
+
+    try {
+      const response = await fetch(`http://localhost:3000/api/estudiantes/${id}`, {
+        method: 'DELETE'
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert(data.message);
+        cargarEstudiantes(); // Recargar la lista
+      } else {
+        alert(data.error || 'Error al eliminar el registro');
+      }
+    } catch (error) {
+      console.error('Error al eliminar:', error);
+      alert('Error al conectar con el servidor');
+    }
   };
 
 
@@ -115,7 +121,12 @@ export default function Usuarios() {
               <p>Proyecto curricular: {estudiante.proyecto_curricular}</p>
               <p>Créditos: {estudiante.creditos}</p>
               <div className="botonCard">
-                   <button className="boton" onClick={eliminarUltimoRegistro}>Eliminar Último Registro</button>
+                <button
+                    className="boton eliminar"
+                    onClick={() => eliminarRegistro(estudiante.id)}
+                >
+                  Eliminar Registro
+                </button>
               </div>
             </div>
           ))}
