@@ -25,7 +25,7 @@ export default function Usuarios() {
       const workbook = new ExcelJS.Workbook();
       const worksheet = workbook.addWorksheet('Estudiantes');
       
-      // Añadir encabezados
+      // Añadir encabezados error with my co
       worksheet.addRow(['Nombre', 'Documento', 'Código', 'Email', 'Semestre', 'Proyecto Curricular', 'Créditos']);
       
       // Añadir datos
